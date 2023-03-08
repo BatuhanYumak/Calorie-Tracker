@@ -1,6 +1,12 @@
+from django.contrib import admin
+from django.urls import include, path
 from django.urls import path
-from calorie import views
+from django.urls import path
 
 urlpatterns = [
-    path('', views.index, name='index'),
+    path('', include('calorie.urls')),
+    path('admin/', admin.site.urls),  
+
+
 ]
+
