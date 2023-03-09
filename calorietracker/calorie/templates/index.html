@@ -11,7 +11,6 @@
     <title>FitFoods</title>
 </head>
 <body>
-   
  <aside id="default-sidebar" class="fixed top-0 left-0 z-40 h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
     <div class="flex items-center justify-center  h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
        <ul class="space-y-2 mx-auto">
@@ -44,6 +43,11 @@
        </ul>
     </div>
  </aside>
- 
+   <div class="h-screen">
+      <video class="w-full h-full object-cover" autoplay muted loop>
+         <source src="{% static 'training.mp4' %}">
+      </video>
+   </div>
+
 </body>
 </html>
