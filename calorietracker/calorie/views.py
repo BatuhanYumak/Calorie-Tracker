@@ -5,3 +5,7 @@ from django.template import loader
 def index(request):
     template = loader.get_template('index.html')
     return HttpResponse(template.render())
+
+def account(request):
+    template = loader.get_template('account.html')
+    return HttpResponse(template.render())
