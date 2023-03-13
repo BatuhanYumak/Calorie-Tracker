@@ -5,6 +5,7 @@ from . import views
 urlpatterns = [
     path('', views.index, name='index'),
     path('account/', views.account, name='account'),
+    path('tracker/', views.tracker,name='tracker'),
 ]
 
 
