@@ -9,10 +9,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.3/flowbite.min.js"></script>
+    <link href="{% static 'main.css' %}" rel="stylesheet" type="text/css" />
+
     <title>FitFood</title>
   </head>
   <body>
-    <aside
+    {% comment %} <aside
       id="default-sidebar"
       class="absolute mr-10 top-0 left-0 z-40 h-screen transition-transform -translate-x-full sm:translate-x-0"
       aria-label="Sidebar"
@@ -26,7 +28,7 @@
               href="#"
               class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
             >
-              <img src="{% static 'home.png'%}" class="h-6" />
+              <img src="{% static 'home.png' %}" class="h-6" />
               <span class="ml-3"></span>
             </a>
           </li>
@@ -89,7 +91,7 @@
           </li>
         </ul>
       </div>
-    </aside>
+    </aside> {% endcomment %}
 
     <form method="POST" class="flex justify-center content-center min-w-3xl pt-2 ml-10">
       {%csrf_token%}
@@ -119,7 +121,7 @@
     {% if api == "oops! There was an error" %}
     <div class ="alert alert-warning"> Oh no! something went wrong.Please try again in sometime. </div>
     {%else%}
-    <h1>{{api.0.name | capfirst}} has a total of <strong> {{api.0.calories}} Calories</strong>
+    <h1>{{api.0.name | capfirst}} has a total of <strong> {{api.0.calories}}  Calories</strong>
       {%if api.0.calories > 200%}
       <img src="{% static 'shocked.png' %}" class="img-responsive" />
       {%endif%}
@@ -188,7 +190,7 @@
       </div>
       <div class="d-flex align-items-center">
         <div class="flex-shrink-0">
-            <img src="{% static 'walking.png' %}" alt="...">
+            <img src="{% static 'walking.jpeg' %}" alt="...">
         </div>
         <div class="flex-grow-1 ms-1">
             <h5> Go for a Brisk Walk </h5>
@@ -204,5 +206,56 @@
 {%endif%}
 {%endif%}
 </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js" integrity="sha512-sW/w8s4RWTdFFSduOTGtk4isV1+190E/GghVffMA9XczdJ2MDzSzLEubKAs5h0wzgSJOQTRYyaz73L3d6RtJSg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+          <script>
+            const ctx = document.getElementById('myChart').getContext('2d');
+            const myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['carbohydrates', 'Cholesterol', 'Saturated fat', 'Total Fat', 'Fiber Content', 'Potassium', 'Protein','Sodium','Sugar'],
+                    datasets: [{
+                        label: 'Nutritional values of {{api.0.name | capfirst}}',
+                        data: [
+                              {{api.0.carbohydrates_total_g}},
+                              {{api.0.cholesterol_mg}},
+                              {{api.0.fat_saturated_g}},
+                              {{api.0.fat_saturated_g}},
+                              {{api.0.fat_total_g}},
+                              {{api.0.potassium_mg}},
+                              {{api.0.protein_g}},
+                              {{api.0.sodium_mg}},
+                              {{api.0.sugar_g}},
+                        ],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(255, 159, 64, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive:true,
+                    maintainAspectRatio:false,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+            </script>
   </body>
 </html>

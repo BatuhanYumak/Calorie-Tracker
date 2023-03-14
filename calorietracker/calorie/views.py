@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.template import loader
+import json
+import requests
 
 
 def index(request):
@@ -16,13 +18,11 @@ def tracker(request):
     return HttpResponse(template.render())
 
 def tracker(request):
-    import json
-    import requests
     if request.method == 'POST':
-        query = request.POST['query']
+        query = request.POST.get('query', False)
         api_url = 'https://api.api-ninjas.com/v1/nutrition?query='
         api_request = requests.get(
-            api_url + query, headers={'X-Api-Key': 'YOUR-API-KEY'})
+api_url + str(query), headers={'X-Api-Key': 'YOUR-API-KEY'})        
         try:
             api = json.loads(api_request.content)
             print(api_request.content)
