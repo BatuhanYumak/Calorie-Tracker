@@ -23,6 +23,10 @@ def tracker(request):
     template = loader.get_template('tracker.html')
     return HttpResponse(template.render())
 
+def tracker_homepage(args):
+    template = loader.get_template('tracker_homepage.html')
+    return HttpResponse(template.render())
+    
 
 def tracker(request):
     if request.method == 'POST':
