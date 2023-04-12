@@ -74,7 +74,7 @@ WSGI_APPLICATION = 'calorietracker.wsgi.application'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
+        'ENGINE': '',
         'NAME':   os.environ.get('DB_NAME'),
         'USER':   os.environ.get('DB_USER'), #here
         'PASSWORD': os.environ.get('DB_PASS'), #here

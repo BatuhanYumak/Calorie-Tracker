@@ -11,7 +11,7 @@ urlpatterns = [
     # Dit is de tracker pagina
     path('tracker/', views.tracker,name='tracker'),
     # Dit is de home pagina van tracker
-    path('tracker_homepage', views.tracker_homepage, name='tracker_homepage'),
+    # path('tracker_homepage', views.tracker_homepage, name='tracker_homepage'),
 ]
 
 
