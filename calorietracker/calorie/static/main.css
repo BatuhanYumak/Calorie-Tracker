@@ -105,3 +105,15 @@ video {
   background-size: cover;
   transition: 1s opacity;
 }
+
+.shocked {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-size: 4em;
+  font-weight: 700;
+  text-align: center;
+  z-index: 100;
+}

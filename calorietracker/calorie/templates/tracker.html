@@ -75,6 +75,29 @@
     </form>
   </div>
 
+
+  {% if api %}
+{% if api == "oops! There was an error" %}
+<div class ="alert alert-warning"> Oh no! something went wrong.Please try again in sometime. </div>
+{%else%}
+  {%if api.0.calories > 200%}
+  <img class="shocked" src="{% static 'shocked.png' %}" class="foto'" class="img-responsive" />
+  {%endif%}
+</h1>
+{%if api.0.sodium_mg > 1000%}
+<div class="alert alert-danger d-flex align-items-center mt-3" role="alert">
+  <div>
+    Dit voer bevat een hoog gehalte aan natrium. Hoog natriumgehalte veroorzaakt ernstige uitdroging en het vasthouden van water.      </div>
+</div>
+{%endif%}
+{%if api.0.sugar_g > 100%}
+<div class="alert alert-danger d-flex align-items-center mt-3" role="alert">
+  <div>
+    Deze voeding bevat een hoog gehalte aan suiker. Suiker veroorzaakt insulinepieken en is een nr. 1 oorzaak van obesitas.      </div>
+</div>
+{%endif%}
+{%endif%}
+{%endif%}
   <div class="row justify-content-center mt-5 mb-5">
     <div class="Tabel" class="col-md-10 caloriescont shadow rounded">
         <div class="row">
@@ -137,30 +160,6 @@
   <canvas id="myChart" width="400" height="400"></canvas>
   </div>
 </div>
-</div>
-{% if api %}
-{% if api == "oops! There was an error" %}
-<div class ="alert alert-warning"> Oh no! something went wrong.Please try again in sometime. </div>
-{%else%}
-<h1>{{api.0.name | capfirst}} <strong class="voeding"> {{api.0.calories}} Calorieën</strong>
-  {%if api.0.calories > 200%}
-  <img src="{% static 'shocked.png' %}" class="foto'" class="img-responsive" />
-  {%endif%}
-</h1>
-{%if api.0.sodium_mg > 1000%}
-<div class="alert alert-danger d-flex align-items-center mt-3" role="alert">
-  <div>
-    Dit voer bevat een hoog gehalte aan natrium. Hoog natriumgehalte veroorzaakt ernstige uitdroging en het vasthouden van water.      </div>
-</div>
-{%endif%}
-{%if api.0.sugar_g > 100%}
-<div class="alert alert-danger d-flex align-items-center mt-3" role="alert">
-  <div>
-    Deze voeding bevat een hoog gehalte aan suiker. Suiker veroorzaakt insulinepieken en is een nr. 1 oorzaak van obesitas.      </div>
-</div>
-{%endif%}
-{%endif%}
-{%endif%}
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js" integrity="sha512-sW/w8s4RWTdFFSduOTGtk4isV1+190E/GghVffMA9XczdJ2MDzSzLEubKAs5h0wzgSJOQTRYyaz73L3d6RtJSg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
