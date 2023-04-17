@@ -1,0 +1,119 @@
+body {
+    background-color: #f6fbf4;
+    overflow-x: hidden;
+  }
+  
+  .logo {
+    width: 13em;
+    height: 63px;
+  }
+  
+  h1 {
+    font-weight: 300;
+  }
+  
+  h1 {
+    display: flex;
+    justify-content: center;
+    font-weight: 600;
+    color: #4b8673;
+  }
+  
+  .inputstyle {
+    padding: 20px !important;
+  }
+  
+  .whoop {
+    background-color: #5fd068;
+    width: 8em;
+    font-size: 30px !important;
+    color: #ffffff;
+  }
+  
+  .caloriescont {
+    background-color: #ffffff;
+    padding: 30px;
+  }
+  
+  .caloriescont ul {
+    padding: 0px;
+  }
+  
+  .caloriescont ul li {
+    list-style: none;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #efefef;
+    width: 80%;
+  }
+  
+  .caloriescont h3 {
+    color: #4b8673;
+    font-size: 2em;
+    text-transform: capitalize;
+    font-weight: 700;
+  }
+  
+  .caloriescont h5 {
+    color: #4b8673;
+  }
+  
+  .servingsize {
+    background-color: #000000;
+    padding: 10px;
+    color: #ffffff;
+  }
+
+  .foto  {
+    width: 200px;
+  }
+.voeding {
+  padding-left: 20px;
+}
+
+.Tabel {
+  padding-left: 100px;
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+body {  
+  /* This section calls the slideInFromLeft animation we defined above */
+  animation: 1s ease-out 0s 1 slideInFromLeft;
+  
+  padding: 30px;
+}
+
+/* Added for aesthetics */ body {margin: 0;font-family: "Segoe UI", Arial, Helvetica, Sans Serif;} a {text-decoration: none; display: inline-block; margin-right: 10px; color:#fff;}
+
+
+video {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -100;
+  background-size: cover;
+  transition: 1s opacity;
+}
+
+.shocked {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  color: #fff;
+  font-size: 4em;
+  font-weight: 700;
+  text-align: center;
+  z-index: 100;
+  }

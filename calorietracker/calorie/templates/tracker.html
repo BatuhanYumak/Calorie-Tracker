@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+{% load static %} {% load static %} {%load mathfilters%} {%load humanize%}
+
+
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.3/flowbite.min.js"></script>
+    <link href="{% static 'main.css' %}" rel="stylesheet" type="text/css" />
+
+    <title>FitFood</title>
+  </head>
+  <body>
+   
+    <aside id="default-sidebar" class="fixed top-0 left-0 z-40 h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
+      <div class="flex items-center justify-center  h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
+         <ul class="space-y-2 mx-auto">
+            <li class="pt-20">
+               <a href="{% url 'index'%}" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                  <img src="{% static 'home.png'%}" class="h-6">
+                  <span class="ml-3"></span>
+               </a>
+            </li>
+            <li class="pt-20">
+              <a href="#" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-activity"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></g></svg>                <span class="ml-3"></span>
+               </a>
+            </li>
+        
+   
+         
+         </ul>
+      </div>
+   </aside>
+   
+    <form method="POST" class="flex justify-center content-center min-w-3xl pt-2 ml-10">
+      {%csrf_token%}
+
+      <label
+        for="default-search"
+        class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white w-"
+        >Search</label
+      >
+      <div class="flex flex-row">
+        <input
+    type="search"
+    id="default-search"
+    name="query"
+    class="p-4 text-sm w-[50vw] text-gray-900 border border-gray-300 rounded-l-3xl bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+    placeholder=""
+    required
+/>
+        <button
+          type="submit"
+          class="text-white right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-r-3xl text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        >
+          Search
+        </button>
+      </div>
+    </form>
+  </div>
+
+
+  {% if api %}
+{% if api == "oops! There was an error" %}
+<div class ="alert alert-warning"> Oh no! something went wrong.Please try again in sometime. </div>
+{%else%}
+  {%if api.0.calories > 200%}
+  <img class="shocked" src="{% static 'shocked.png' %}" class="foto'" class="img-responsive" />
+  {%endif%}
+</h1>
+{%if api.0.sodium_mg > 1000%}
+<div class="alert alert-danger d-flex align-items-center mt-3" role="alert">
+  <div>
+    Dit voer bevat een hoog gehalte aan natrium. Hoog natriumgehalte veroorzaakt ernstige uitdroging en het vasthouden van water.      </div>
+</div>
+{%endif%}
+{%if api.0.sugar_g > 100%}
+<div class="alert alert-danger d-flex align-items-center mt-3" role="alert">
+  <div>
+    Deze voeding bevat een hoog gehalte aan suiker. Suiker veroorzaakt insulinepieken en is een nr. 1 oorzaak van obesitas.      </div>
+</div>
+{%endif%}
+{%endif%}
+{%endif%}
+  <div class="row justify-content-center mt-5 mb-5">
+    <div class="Tabel" class="col-md-10 caloriescont shadow rounded">
+        <div class="row">
+          <div class="col-md-6">
+            <h1>{{api.0.name | capfirst}} <strong class="voeding"> {{api.0.calories}}<span id="voedingCals"> Calorieën</strong>  
+            <h2 class="mt-3 mb-4">Voedingswaarde </h2><span></span>
+            <ul>
+                <li class="servingsize">Portiegrootte per 100/Grams <span class="float-end"></span></li>
+                <li>Koolhydraten: <span class="float-end">{{api.0.carbohydrates_total_g}}</span></li>
+                <li>Cholesterol: <span class="float-end">{{api.0.cholesterol_mg}}</span></li>
+                <li>Verzadigd vet: <span class="float-end">{{api.0.fat_saturated_g}}</span></li>
+                <li>Totaal vet: <span class="float-end">{{api.0.fat_saturated_g}}</span></li>
+                <li>Vezelgehalte: <span class="float-end">{{api.0.fat_total_g}}</span></li>
+                <li>Potassium <span class="float-end">{{api.0.potassium_mg}}</span></li>
+                <li>Proteïne <span class="float-end">{{api.0.protein_g}}</span></li>
+                <li>Sodium:<span class="float-end">{{api.0.sodium_mg}}</span></li>
+                <li>Suiker: <span class="float-end">{{api.0.sugar_g}}</span></li>
+            </ul>
+          </div>
+          <div class="col-md-6 mb-5">
+              <h4 class="mt-3 mb-4">Om {{api.0.calories}} calorieën te verbranden zul je moeten</h4>
+              <div class="d-flex align-items-center mb-5">
+                <div class="flex-shrink-0">
+                  <img src="{% static 'jogging.gif' %}" class="foto" alt="...">
+              </div>
+              <div id="rennen" class="flex-grow-1 ms-3">
+                <h5 > Jogging </h5>
+                <p>je zult moeten joggen voor <strong> {{api.0.calories | div:378|mul:60|floatformat:0}} </strong> Minuten</p>
+            </div>
+          </div>
+          <div class="d-flex align-items-center mb-5">
+            <div class="flex-shrink-0">
+              <img src="{% static 'Yoga.gif' %}" class="foto" alt="...">
+            </div>
+            <div class="flex-grow-1 ms-4">
+              <h5> Do Power Yoga </h5>
+              <p>daar zul je Power Yoga voor moeten hebben <strong> {{api.0.calories | div:223|mul:60|floatformat:0}} </strong> Minuten</p>
+          </div>
+        </div>
+        <div class="d-flex align-items-center mb-5">
+          <div class="flex-shrink-0">
+            <img src="{% static 'Weigthlifting.gif' %}" class="foto" alt="...">
+          </div>
+          <div class="flex-grow-1 ms-4">
+            <h5>Gym Workout </h5>
+            <p>je zult gewicht moeten heffen voor <strong> {{api.0.calories | div:483|mul:60|floatformat:0}} </strong> Minuten </p>
+        </div>
+      </div>
+      <div class="d-flex align-items-center">
+        <div class="flex-shrink-0">
+            <img src="{% static 'walking.gif' %}" class="foto" alt="...">
+        </div>
+        <div class="flex-grow-1 ms-1">
+            <h5> Maak een stevige wandeling </h5>
+            <p>je zult een stevige wandeling moeten maken <strong> {{api.0.calories | div:294|mul:60|floatformat:0}}  </strong> Minuten</p>
+        </div>
+    </div>
+</div>
+<div>
+  <canvas id="myChart" width="400" height="400"></canvas>
+  </div>
+</div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js" integrity="sha512-sW/w8s4RWTdFFSduOTGtk4isV1+190E/GghVffMA9XczdJ2MDzSzLEubKAs5h0wzgSJOQTRYyaz73L3d6RtJSg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+          <script>
+            const ctx = document.getElementById('myChart').getContext('2d');
+            const myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['koolhydraten', 'Cholesterol', 'Saturated fat', 'Total Fat', 'Fiber Content', 'Potassium', 'Protein','Sodium','Sugar'],
+                    datasets: [{
+                        label: 'Nutritional values of {{api.0.name | capfirst}}',
+                        data: [
+                              {{api.0.carbohydrates_total_g}},
+                              {{api.0.cholesterol_mg}},
+                              {{api.0.fat_saturated_g}},
+                              {{api.0.fat_saturated_g}},
+                              {{api.0.fat_total_g}},
+                              {{api.0.potassium_mg}},
+                              {{api.0.protein_g}},
+                              {{api.0.sodium_mg}},
+                              {{api.0.sugar_g}},
+                        ],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(255, 159, 64, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive:true,
+                    maintainAspectRatio:false,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+            </script>            
+  </body>
+</html>
