@@ -1,3 +1,4 @@
 .env
 *.pyc
+__pycache__/
 >>>>>>> feature/add-tracker-page
