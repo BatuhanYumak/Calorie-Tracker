@@ -117,3 +117,10 @@ video {
   text-align: center;
   z-index: 100;
   }
+#trackerMessage {
+  display: flex;
+  justify-content: center;
+  font-weight: 600;
+  color: #ae2203;
+  align-content: center;
+}

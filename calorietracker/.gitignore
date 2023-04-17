@@ -1,4 +1,4 @@
 .env
 *.pyc
+myproject/lib/python3.10/site-packages/
 __pycache__/
->>>>>>> feature/add-tracker-page

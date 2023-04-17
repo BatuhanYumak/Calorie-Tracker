@@ -11,28 +11,23 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.3/flowbite.min.js"></script>
     <link href="{% static 'main.css' %}" rel="stylesheet" type="text/css" />
-
     <title>FitFood</title>
   </head>
   <body>
    
-    <aside id="default-sidebar" class="fixed top-0 left-0 z-40 h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
-      <div class="flex items-center justify-center  h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
-         <ul class="space-y-2 mx-auto">
+    <aside id="default-sidebar" class="fixed top-0 left-0 z-99 h-screen transition-transform -translate-x-full sm:translate-x-0 max-w-sm" aria-label="Sidebar">
+      <div class="flex items-center justify-center h-full bg-gray-50 dark:bg-gray-800 max-w-sm">
+         <ul class="space-y-2 pl-1">
             <li class="pt-20">
                <a href="{% url 'index'%}" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                   <img src="{% static 'home.png'%}" class="h-6">
-                  <span class="ml-3"></span>
                </a>
             </li>
             <li class="pt-20">
               <a href="#" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-activity"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></g></svg>                <span class="ml-3"></span>
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-activity"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></g></svg>
                </a>
             </li>
-        
-   
-         
          </ul>
       </div>
    </aside>
@@ -80,7 +75,7 @@
 </div>
 {%endif%}
 {%if api.0.sugar_g > 100%}
-<div class="alert alert-danger d-flex align-items-center mt-3" role="alert">
+<div class="alert alert-danger d-flex align-items-center mt-3" role="alert" id="trackerMessage">
   <div>
     Deze voeding bevat een hoog gehalte aan suiker. Suiker veroorzaakt insulinepieken en is een nr. 1 oorzaak van obesitas.      </div>
 </div>
