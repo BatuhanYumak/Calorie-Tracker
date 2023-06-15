@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-{% load static %} {% load static %} {%load mathfilters%} {%load humanize%}
+{% load static %}  {%load mathfilters%} {%load humanize%}
 
 
 
@@ -61,46 +61,95 @@
 
 
   {% if api %}
-{% if api == "oops! There was an error" %}
-<div class ="alert alert-warning"> Oh no! something went wrong.Please try again in sometime. </div>
-{%else%}
-  {%if api.0.calories > 200%}
-  <img class="shocked" src="{% static 'shocked.png' %}" class="foto'" class="img-responsive" />
-  {%endif%}
-</h1>
-{%if api.0.sodium_mg > 1000%}
-<div class="alert alert-danger d-flex align-items-center mt-3" role="alert">
-  <div>
-    Dit voer bevat een hoog gehalte aan natrium. Hoog natriumgehalte veroorzaakt ernstige uitdroging en het vasthouden van water.      </div>
-</div>
-{%endif%}
-{%if api.0.sugar_g > 100%}
-<div class="alert alert-danger d-flex align-items-center mt-3" role="alert" id="trackerMessage">
-  <div>
-    Deze voeding bevat een hoog gehalte aan suiker. Suiker veroorzaakt insulinepieken en is een nr. 1 oorzaak van obesitas.      </div>
-</div>
-{%endif%}
-{%endif%}
-{%endif%}
+  {% if api == "oops! There was an error" %}
+      <!-- Stap 1: Controleer of "api" bestaat -->
+      <!-- Step 1: Check if "api" exists -->
+      <div class ="alert alert-warning"> Oh no! something went wrong. Please try again in sometime. </div>
+      <!-- Stap 3: Toon een waarschuwingsbericht als "api" gelijk is aan "oops! There was an error" -->
+      <!-- Step 3: Display an alert message if "api" equals "oops! There was an error" -->
+  {% else %}
+      {% if api.0.calories > 200 %}
+          <!-- Stap 5: Controleer of "api.0.calories" groter is dan 200 -->
+          <!-- Step 5: Check if "api.0.calories" is greater than 200 -->
+          <img class="shocked" src="{% static 'shocked.png' %}" class="foto'" class="img-responsive" />
+          <!-- Stap 6: Toon een afbeelding als "api.0.calories" groter is dan 200 -->
+          <!-- Step 6: Display an image if "api.0.calories" is greater than 200 -->
+      {% endif %}
+  </h1>
+  {% if api.0.sodium_mg > 1000 %}
+       <!-- Stap 7: Controleer of "api.0.sodium_mg" groter is dan 1000 --> 
+      <!-- Step 7: Check if "api.0.sodium_mg" is greater than 1000 -->
+      <div class="alert alert-danger d-flex align-items-center mt-3" role="alert">
+          <div>
+          Dit voer bevat een hoog gehalte aan natrium. Hoog natriumgehalte veroorzaakt ernstige uitdroging en het vasthouden van water.
+          </div>
+      </div>
+      <!-- Stap 8: Toon een gevaarlijk waarschuwingsbericht als "api.0.sodium_mg" groter is dan 1000 -->
+      <!-- Step 8: Display a danger alert message if "api.0.sodium_mg" is greater than 1000 -->
+  {% endif %}
+  {% if api.0.sugar_g > 100 %}
+      <!-- Stap 9: Controleer of "api.0.sugar_g" groter is dan 100 -->
+      <!-- Step 9: Check if "api.0.sugar_g" is greater than 100 -->
+      <div class="alert alert-danger d-flex align-items-center mt-3" role="alert" id="trackerMessage">
+          <div>
+          Deze voeding bevat een hoog gehalte aan suiker. Suiker veroorzaakt insulinepieken en is een nr. 1 oorzaak van obesitas.
+          </div>
+      </div>
+      <!-- Stap 10: Toon een gevaarlijk waarschuwingsbericht als "api.0.sugar_g" groter is dan 100 -->
+      <!-- Step 10: Display a danger alert message if "api.0.sugar_g" is greater than 100 -->
+  {% endif %}
+  {% endif %}
+{% endif %}
+
   <div class="row justify-content-center mt-5 mb-5">
     <div class="Tabel" class="col-md-10 caloriescont shadow rounded">
         <div class="row">
           <div class="col-md-6">
-            <h1>{{api.0.name | capfirst}} <strong class="voeding"> {{api.0.calories}}<span id="voedingCals"> Calorieën</strong>  
-            <h2 class="mt-3 mb-4">Voedingswaarde </h2><span></span>
+            <h1>{{api.0.name | capfirst}} <strong class="voeding"> {{api.0.calories}}<span id="voedingCals"> Calorieën</strong></h1>
+            <!-- Stap 1: Toon de naam van het item en de calorie-waarde -->
+            <!-- Step 1: Display the name of the item and the calorie value -->
+            <h2 class="mt-3 mb-4">Voedingswaarde</h2>
+            <!-- Stap 2: Toon de subtitel "Voedingswaarde" -->
+            <!-- Step 2: Display the subheading "Voedingswaarde" -->
+            <span></span>
             <ul>
+                <!-- Stap 3: Start een ongeordende lijst -->
+                <!-- Step 3: Start an unordered list -->
                 <li class="servingsize">Portiegrootte per 100/Grams <span class="float-end"></span></li>
+                <!-- Stap 4: Toon de portiegrootte per 100 gram --> 
+                <!-- Step 4: Display the serving size per 100 grams -->
                 <li>Koolhydraten: <span class="float-end">{{api.0.carbohydrates_total_g}}</span></li>
+                <!-- Stap 5: Toon de hoeveelheid koolhydraten -->
+                <!-- Step 5: Display the amount of carbohydrates -->
                 <li>Cholesterol: <span class="float-end">{{api.0.cholesterol_mg}}</span></li>
+                <!-- Stap 6: Toon de hoeveelheid cholesterol -->
+                <!-- Step 6: Display the amount of cholesterol -->
                 <li>Verzadigd vet: <span class="float-end">{{api.0.fat_saturated_g}}</span></li>
+                <!-- Stap 7: Toon de hoeveelheid verzadigd vet -->
+                <!-- Step 7: Display the amount of saturated fat -->
                 <li>Totaal vet: <span class="float-end">{{api.0.fat_saturated_g}}</span></li>
+                <!-- Stap 8: Toon de hoeveelheid totaal vet -->
+                <!-- Step 8: Display the total fat amount -->
                 <li>Vezelgehalte: <span class="float-end">{{api.0.fat_total_g}}</span></li>
+                <!-- Stap 9: Toon de hoeveelheid vezels -->
+                <!-- Step 9: Display the fiber content -->
                 <li>Potassium <span class="float-end">{{api.0.potassium_mg}}</span></li>
+                <!-- Stap 10: Toon de hoeveelheid kalium -->
+                <!-- Step 10: Display the amount of potassium -->
                 <li>Proteïne <span class="float-end">{{api.0.protein_g}}</span></li>
+                <!-- Stap 11: Toon de hoeveelheid proteïne -->
+                <!-- Step 11: Display the amount of protein -->
                 <li>Sodium:<span class="float-end">{{api.0.sodium_mg}}</span></li>
+                <!-- Stap 12: Toon de hoeveelheid sodium -->
+                <!-- Step 12: Display the amount of sodium -->
                 <li>Suiker: <span class="float-end">{{api.0.sugar_g}}</span></li>
+                <!-- Stap 13: Toon de hoeveelheid suiker -->
+                <!-- Step 13: Display the amount of sugar -->
             </ul>
-          </div>
+            <!-- Stap 14: Eindig de ongeordende lijst -->
+            <!-- Step 14: End the unordered list -->
+        </div>
+        
           <div class="col-md-6 mb-5">
               <h4 class="mt-3 mb-4">Om {{api.0.calories}} calorieën te verbranden zul je moeten</h4>
               <div class="d-flex align-items-center mb-5">
@@ -147,54 +196,60 @@
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js" integrity="sha512-sW/w8s4RWTdFFSduOTGtk4isV1+190E/GghVffMA9XczdJ2MDzSzLEubKAs5h0wzgSJOQTRYyaz73L3d6RtJSg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-          <script>
-            const ctx = document.getElementById('myChart').getContext('2d');
-            const myChart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: ['koolhydraten', 'Cholesterol', 'Saturated fat', 'Total Fat', 'Fiber Content', 'Potassium', 'Protein','Sodium','Sugar'],
-                    datasets: [{
-                        label: 'Nutritional values of {{api.0.name | capfirst}}',
-                        data: [
-                              {{api.0.carbohydrates_total_g}},
-                              {{api.0.cholesterol_mg}},
-                              {{api.0.fat_saturated_g}},
-                              {{api.0.fat_saturated_g}},
-                              {{api.0.fat_total_g}},
-                              {{api.0.potassium_mg}},
-                              {{api.0.protein_g}},
-                              {{api.0.sodium_mg}},
-                              {{api.0.sugar_g}},
-                        ],
-                        backgroundColor: [
-                            'rgba(255, 99, 132, 0.2)',
-                            'rgba(54, 162, 235, 0.2)',
-                            'rgba(255, 206, 86, 0.2)',
-                            'rgba(75, 192, 192, 0.2)',
-                            'rgba(153, 102, 255, 0.2)',
-                            'rgba(255, 159, 64, 0.2)'
-                        ],
-                        borderColor: [
-                            'rgba(255, 99, 132, 1)',
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(255, 206, 86, 1)',
-                            'rgba(75, 192, 192, 1)',
-                            'rgba(153, 102, 255, 1)',
-                            'rgba(255, 159, 64, 1)'
-                        ],
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    responsive:true,
-                    maintainAspectRatio:false,
-                    scales: {
-                        y: {
-                            beginAtZero: true
-                        }
-                    }
-                }
-            });
-            </script>            
-  </body>
+<script>
+  // Haal het canvas-element op met de ID 'myChart' en maak een 2D-renderingcontext
+  // Get the canvas element with the ID 'myChart' and create a 2D rendering context
+  const ctx = document.getElementById('myChart').getContext('2d');
+  // Maak een nieuw Chart-object met de canvas-context
+  // Create a new Chart object with the canvas context
+  const myChart = new Chart(ctx, {
+    type: 'bar', // Stel het grafiektype in op bar // Set the chart type to bar
+    data: {
+      labels: ['koolhydraten', 'Cholesterol', 'Saturated fat', 'Total Fat', 'Fiber Content', 'Potassium', 'Protein','Sodium','Sugar'],  // Stel de labels in voor de X-as  // Set the labels for the X-axis
+      datasets: [{
+        label: 'Nutritional values of {{api.0.name | capfirst}}',  // Stel het label in voor de dataset // Set the label for the dataset 
+        data: [
+          {{api.0.carbohydrates_total_g}},  // Stel de gegevenswaarden in voor elk label // Set the data values for each label
+          {{api.0.cholesterol_mg}},   
+          {{api.0.fat_saturated_g}},
+          {{api.0.fat_saturated_g}},
+          {{api.0.fat_total_g}},
+          {{api.0.potassium_mg}},
+          {{api.0.protein_g}},
+          {{api.0.sodium_mg}},
+          {{api.0.sugar_g}},
+        ],
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.2)',  // Stel de achtergrondkleur in voor elke balk // Set the background color for each bar
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)'
+        ],
+        borderColor: [
+          'rgba(255, 99, 132, 1)',  // Stel de randkleur in voor elke balk  // Set the border color for each bar
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)'
+        ],
+        borderWidth: 1  // Stel de randbreedte in voor elke balk  // Set the border width for each bar
+      }]
+    },
+    options: {
+      responsive: true,  // Schakel responsiviteit van de grafiek in  // Enable responsiveness of the chart
+      maintainAspectRatio: false,  // Behoud niet het aspectratio van de grafiek    // Do not maintain the aspect ratio of the chart
+      scales: { // Stel de schalen in voor de X- en Y-as  // Set the scales for the X and Y axis
+        y: {
+          beginAtZero: true  // Start de Y-as vanaf nul // Start the Y-axis from zero
+        }
+      }
+    }
+  });
+</script>
+</script>
+</body>
+
 </html>
